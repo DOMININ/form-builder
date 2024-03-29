@@ -1,5 +1,10 @@
 import { Input } from "@/components/ui/input";
+import { InputFormElementProperties } from "@/stores/types.ts";
 
-export const FormInput = () => {
-  return <Input />;
+interface Props {
+  properties: InputFormElementProperties;
+}
+
+export const FormInput = ({ properties }: Props) => {
+  return <Input placeholder={properties?.placeholder} />;
 };

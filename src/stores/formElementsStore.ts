@@ -1,8 +1,10 @@
 import { create } from "zustand";
 import { FormElement } from "@/stores/types.ts";
+import { exportJson } from "@/utils/exportJson.ts";
 
 interface ElementsState {
   selectedFormElements: FormElement[];
+
   addFormElement: (newElement: FormElement) => void;
   setFormElements: (formElements: FormElement[]) => void;
   getFormElementById: (id: string) => FormElement | undefined;
@@ -11,6 +13,7 @@ interface ElementsState {
     propertyName: string,
     propertyValue: string,
   ) => void;
+  exportFormElements: () => void;
 }
 
 export const formElementsStore = create<ElementsState>()((set, getState) => ({
@@ -47,4 +50,8 @@ export const formElementsStore = create<ElementsState>()((set, getState) => ({
         selectedFormElements: updatedElements,
       };
     }),
+
+  exportFormElements: () => {
+    exportJson(getState().selectedFormElements);
+  },
 }));

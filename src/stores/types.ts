@@ -4,7 +4,14 @@ export type ButtonFormElementProperties = {
   text?: string;
 };
 
-export type FormElementProperties = ButtonFormElementProperties | object;
+export type InputFormElementProperties = {
+  placeholder?: string;
+};
+
+export type FormElementProperties =
+  | ButtonFormElementProperties
+  | InputFormElementProperties
+  | object;
 
 export interface FormElement {
   id: string;
