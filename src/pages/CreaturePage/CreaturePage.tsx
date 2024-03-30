@@ -4,6 +4,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { formElementsStore } from "@/stores/formElementsStore.ts";
 import { v4 as uuid } from "uuid";
 import { ElementsName } from "@/pages/CreaturePage/components/AsideMenu/types.ts";
+import { getPropertiesByFormType } from "@/pages/CreaturePage/utils/getPropertiesByFormType.ts";
 
 export const CreaturePage = () => {
   const selectedFormElements = formElementsStore(
@@ -21,7 +22,7 @@ export const CreaturePage = () => {
     const newElement = {
       id: uuid(),
       type: result.draggableId as ElementsName,
-      properties: {},
+      properties: getPropertiesByFormType(result.draggableId as ElementsName),
     };
 
     if (!selectedFormElements.length) {

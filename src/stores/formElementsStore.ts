@@ -11,7 +11,7 @@ interface ElementsState {
   changeFormElementSetting: (
     id: string,
     propertyName: string,
-    propertyValue: string,
+    propertyValue: unknown,
   ) => void;
   exportFormElements: () => void;
 }
