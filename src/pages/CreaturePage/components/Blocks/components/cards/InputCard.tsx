@@ -1,20 +1,16 @@
 import { ChangeEvent } from "react";
 import { formElementsStore } from "@/stores/formElementsStore.ts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
+import { CardContent } from "@/components/ui/card.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { InputFormElementProperties } from "@/stores/types.ts";
+import { CardWrapper } from "@/pages/CreaturePage/components/Blocks/components/cards/CardWrapper.tsx";
 
-interface ButtonCardProps {
+interface InputCardProps {
   id: string;
 }
 
-export const InputCard = ({ id }: ButtonCardProps) => {
+export const InputCard = ({ id }: InputCardProps) => {
   const formElementById = formElementsStore(
     (state) => state.getFormElementById,
   );
@@ -27,10 +23,7 @@ export const InputCard = ({ id }: ButtonCardProps) => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Input settings</CardTitle>
-      </CardHeader>
+    <CardWrapper id={id} title="Input settings">
       <CardContent>
         <Label htmlFor="btnText">Placeholder text</Label>
         <Input
@@ -42,6 +35,6 @@ export const InputCard = ({ id }: ButtonCardProps) => {
           }
         />
       </CardContent>
-    </Card>
+    </CardWrapper>
   );
 };

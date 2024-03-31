@@ -6,5 +6,5 @@ interface Props {
 }
 
 export const FormInput = ({ properties }: Props) => {
-  return <Input placeholder={properties?.placeholder} />;
+  return <Input placeholder={properties.placeholder} />;
 };

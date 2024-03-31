@@ -22,6 +22,7 @@ export const Blocks = () => {
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
+                  className="w-full"
                 >
                   {getFormSettingByType(item.type, item.id)}
                 </div>

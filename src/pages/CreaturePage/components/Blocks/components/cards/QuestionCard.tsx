@@ -1,27 +1,31 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
+import { CardContent } from "@/components/ui/card.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
-import { RadioFormElementProperties } from "@/stores/types.ts";
+import { QuestionFormElementProperties } from "@/stores/types.ts";
 import { ChangeEvent } from "react";
 import { formElementsStore } from "@/stores/formElementsStore.ts";
 import { v4 as uuid } from "uuid";
+import { CardWrapper } from "@/pages/CreaturePage/components/Blocks/components/cards/CardWrapper.tsx";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Props {
   id: string;
 }
 
-export const RadioCard = ({ id }: Props) => {
+export const QuestionCard = ({ id }: Props) => {
   const formElementById = formElementsStore(
     (state) => state.getFormElementById,
   );
   const formElementProperties = formElementById(id)
-    ?.properties as RadioFormElementProperties;
+    ?.properties as QuestionFormElementProperties;
   const changeFormElementSetting = formElementsStore(
     (state) => state.changeFormElementSetting,
   );
@@ -65,11 +69,37 @@ export const RadioCard = ({ id }: Props) => {
     changeFormElementSetting(id, "values", filteredItems);
   };
 
+  const changeTypeOfTheQuestion = (type: string) => {
+    changeFormElementSetting(id, "type", type);
+  };
+
+  const SelectVariant = () => (
+    <Select
+      defaultValue={formElementProperties.type}
+      onValueChange={changeTypeOfTheQuestion}
+    >
+      <SelectTrigger className="w-[240px]">
+        <SelectValue placeholder="Select the type of question" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectItem value="radio">One from the list</SelectItem>
+          <SelectItem value="checkbox">Multi select</SelectItem>
+          <SelectItem value="select">Drop down list</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  );
+
   return (
-    <Card className="w-[500px]">
-      <CardHeader>
-        <CardTitle>Question settings</CardTitle>
-      </CardHeader>
+    <CardWrapper
+      id={id}
+      title={
+        <p className="flex items-center justify-between">
+          Question settings <SelectVariant />
+        </p>
+      }
+    >
       <CardContent className="flex flex-col gap-[25px]">
         <div>
           <Label htmlFor="btnText">Question</Label>
@@ -105,13 +135,13 @@ export const RadioCard = ({ id }: Props) => {
             ))}
 
             <Input
-              placeholder="new answer"
+              placeholder="New answer"
               onClick={addNewItem}
               className="w-[90%]"
             />
           </ul>
         </div>
       </CardContent>
-    </Card>
+    </CardWrapper>
   );
 };

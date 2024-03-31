@@ -1,30 +1,26 @@
 import { ElementsName } from "@/pages/CreaturePage/components/AsideMenu/types.ts";
-import { FormButton } from "@/pages/CreaturePage/components/Blocks/components/FormButton";
 import { FormInput } from "@/pages/CreaturePage/components/Blocks/components/FormInput";
 import {
   FormElementProperties,
-  ButtonFormElementProperties,
   InputFormElementProperties,
-  RadioFormElementProperties,
+  QuestionFormElementProperties,
 } from "@/stores/types.ts";
-import { FormRadio } from "@/pages/CreaturePage/components/Blocks/components/FormRadio";
+import { FormQuestion } from "@/pages/CreaturePage/components/Blocks/components/FormQuestion";
 
 export const getComponentByType = (
   type: ElementsName,
   properties: FormElementProperties,
 ) => {
   switch (type) {
-    case ElementsName.Button:
-      return (
-        <FormButton properties={properties as ButtonFormElementProperties} />
-      );
     case ElementsName.Input:
       return (
         <FormInput properties={properties as InputFormElementProperties} />
       );
-    case ElementsName.Radio:
+    case ElementsName.Question:
       return (
-        <FormRadio properties={properties as RadioFormElementProperties} />
+        <FormQuestion
+          properties={properties as QuestionFormElementProperties}
+        />
       );
     default:
       return null;

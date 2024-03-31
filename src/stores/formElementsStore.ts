@@ -6,6 +6,7 @@ interface ElementsState {
   selectedFormElements: FormElement[];
 
   addFormElement: (newElement: FormElement) => void;
+  removeFormElement: (id: string) => void;
   setFormElements: (formElements: FormElement[]) => void;
   getFormElementById: (id: string) => FormElement | undefined;
   changeFormElementSetting: (
@@ -22,6 +23,13 @@ export const formElementsStore = create<ElementsState>()((set, getState) => ({
   addFormElement: (newElement) =>
     set((state) => ({
       selectedFormElements: [...state.selectedFormElements, newElement],
+    })),
+
+  removeFormElement: (id) =>
+    set((state) => ({
+      selectedFormElements: state.selectedFormElements.filter(
+        (element) => element.id !== id,
+      ),
     })),
 
   setFormElements: (formElements) =>

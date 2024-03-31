@@ -1,11 +1,7 @@
 import { ElementsName } from "@/pages/CreaturePage/components/AsideMenu/types.ts";
 
-export type ButtonFormElementProperties = {
-  text?: string;
-};
-
 export type InputFormElementProperties = {
-  placeholder?: string;
+  placeholder: string;
 };
 
 type RadioValue = {
@@ -13,15 +9,19 @@ type RadioValue = {
   value: string;
 };
 
-export type RadioFormElementProperties = {
+export enum QuestionFormTypes {
+  Radio = "radio",
+  Checkbox = "checkbox",
+  Select = "select",
+}
+
+export type QuestionFormElementProperties = {
   title: string;
   values: RadioValue[];
+  type: QuestionFormTypes;
 };
 
-export type FormElementProperties =
-  | ButtonFormElementProperties
-  | InputFormElementProperties
-  | object;
+export type FormElementProperties = InputFormElementProperties | object;
 
 export interface FormElement {
   id: string;
