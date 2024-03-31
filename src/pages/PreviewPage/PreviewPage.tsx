@@ -7,9 +7,11 @@ export const PreviewPage = () => {
   );
 
   return (
-    <ul>
+    <ul className="flex flex-col gap-[20px] p-5">
       {selectedFormElements.map((item) => (
-        <li key={item.id}>{getComponentByType(item.type, item.properties)}</li>
+        <li key={item.id} className="border-2 border-indigo-500 rounded p-5">
+          {getComponentByType(item.type, item.properties)}
+        </li>
       ))}
     </ul>
   );

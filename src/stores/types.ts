@@ -2,6 +2,7 @@ import { ElementsName } from "@/pages/CreaturePage/components/AsideMenu/types.ts
 
 export type InputFormElementProperties = {
   placeholder: string;
+  required: boolean;
 };
 
 type RadioValue = {
@@ -19,9 +20,12 @@ export type QuestionFormElementProperties = {
   title: string;
   values: RadioValue[];
   type: QuestionFormTypes;
+  required: boolean;
 };
 
-export type FormElementProperties = InputFormElementProperties | object;
+export type FormElementProperties =
+  | InputFormElementProperties
+  | QuestionFormElementProperties;
 
 export interface FormElement {
   id: string;
