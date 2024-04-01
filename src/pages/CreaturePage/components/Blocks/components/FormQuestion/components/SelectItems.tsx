@@ -10,11 +10,12 @@ import {
 
 interface Props {
   values: QuestionFormElementProperties["values"];
+  handleInputChange: (value: string) => void;
 }
 
-export const SelectItems = ({ values }: Props) => {
+export const SelectItems = ({ values, handleInputChange }: Props) => {
   return (
-    <Select>
+    <Select onValueChange={handleInputChange}>
       <SelectTrigger className="w-[150px]">
         <SelectValue placeholder="Select answer" />
       </SelectTrigger>

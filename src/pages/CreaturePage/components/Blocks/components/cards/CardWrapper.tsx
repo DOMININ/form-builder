@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { formElementsStore } from "@/stores/formElementsStore.ts";
 
 interface Props {
-  title: React.ReactElement;
+  title: React.ReactElement | string;
   children: React.ReactElement;
   id: string;
 }

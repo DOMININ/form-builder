@@ -1,6 +1,7 @@
 import { ElementsName } from "@/pages/CreaturePage/components/AsideMenu/types.ts";
 
 export type InputFormElementProperties = {
+  title: string;
   placeholder: string;
   required: boolean;
 };
@@ -32,3 +33,12 @@ export interface FormElement {
   type: ElementsName;
   properties: FormElementProperties;
 }
+
+export type UserAnswers = {
+  id: string;
+  response: {
+    title: string;
+    required: boolean;
+    userAnswer: string;
+  };
+};
